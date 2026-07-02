@@ -3,17 +3,29 @@ function getRandomNum (min, max) {
 }
 
 
-// создаем пароль
-function createPassword () {
-    let newPassword = [];
-    let spisok = ["A","B","C","D","E","F","G","H","J","K","L","M","N","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","m","n","p","q","r","s","t","u","v","w","x","y","z",2,3,4,5,6,7,8,9];
-    let i = 0;
-    while (i < 10) {
-        newPassword.push(spisok[getRandomNum(0, spisok.length - 1)]);
-        i++;
+function createPassword() {
+    // Исходный набор символов (буквы и цифры, без спецсимволов)
+    const chars = [
+        "A","B","C","D","E","F","G","H","J","K","L","M","N","P","Q","R","S","T","U","V","W","X","Y","Z",
+        "a","b","c","d","e","f","g","h","i","j","k","m","n","p","q","r","s","t","u","v","w","x","y","z",
+        2,3,4,5,6,7,8,9
+    ];
+    const specials = ['%', '№'];
+    const length = 15;
+    const passwordArray = new Array(length);
+
+    // 1. Выбираем случайную позицию для обязательного спецсимвола
+    const specialIndex = Math.floor(Math.random() * length);
+    // 2. Помещаем туда случайный спецсимвол
+    passwordArray[specialIndex] = specials[Math.floor(Math.random() * specials.length)];
+
+    // 3. Заполняем оставшиеся 9 позиций случайными символами из chars
+    for (let i = 0; i < length; i++) {
+        if (i === specialIndex) continue;
+        passwordArray[i] = chars[Math.floor(Math.random() * chars.length)];
     }
-    newPassword = newPassword.join("");
-    return newPassword
+
+    return passwordArray.join('');
 }
 
 

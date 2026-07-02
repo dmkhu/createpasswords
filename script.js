@@ -15,7 +15,7 @@ function createPassword() {
     const passwordArray = new Array(length);
 
     // 1. Выбираем случайную позицию для обязательного спецсимвола
-    const specialIndex = Math.floor(Math.random() * length);
+    const specialIndex = Math.floor(Math.random() * 13) + 1;
     // 2. Помещаем туда случайный спецсимвол
     passwordArray[specialIndex] = specials[Math.floor(Math.random() * specials.length)];
 
